@@ -6,13 +6,13 @@ from os import listdir, mkdir, remove
 from shutil import copyfile
 
 ROOT = dirname(__file__)
-CRYPT_DIR = join(ROOT, 'cprypt files')
+CRYPT_DIR = join(ROOT, 'cprypt_files')
 CHARSET = 'utf-8'
 CRYPT_FORMAT = 'crypt'
 PROFILE_WORK = ['encrypt', 'decrypt']
 b = lambda x: bytes(x, encoding=CHARSET)
 
-FERNET_KEY = b('1B9bhYWTLMFjXcM3MjyFCcfpYIOeqcx2BxBCWmxAj38=') #input("Key crypt: ")
+FERNET_KEY = b(input("Key crypt: ").strip())
 FERNET = Fernet(FERNET_KEY)
 
 
