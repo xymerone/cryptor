@@ -27,15 +27,16 @@ def get_format_file(file):
 		raise ValueError("Incorect! This not file or folder!")
 	pass
 
-def scan_file(dir, type_crypt='encrypt'):
-	res = []
+def scan_file(dir, type_crypt='encrypt', res=[] ):
 	for file in listdir(dir):
-		if type_crypt == 'encrypt' and get_format_file(join(dir, file)) != CRYPT_FORMAT:
-			res.append(join(dir, file))
-		elif type_crypt == 'decrypt' and get_format_file(join(dir,file)) == CRYPT_FORMAT:
-			res.append(join(dir, file))
+		if isdir(join(dir ,file)): 
+			res = scan_file(join(dir, file), type_crypt, res)
+		else:
+			if type_crypt == 'encrypt' and get_format_file(join(dir, file)) != CRYPT_FORMAT:
+				res.append(join(dir, file))
+			elif type_crypt == 'decrypt' and get_format_file(join(dir,file)) == CRYPT_FORMAT:
+				res.append(join(dir, file))
 	return res
-	return [join(dir, file) for file in listdir(dir)]
 
 def crypt_file(list_file, type_crypt='encrypt', delete_file=False):
 	for i,file in enumerate( list_file):
