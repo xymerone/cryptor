@@ -6,7 +6,11 @@ from os import listdir, mkdir, remove
 from shutil import copyfile
 
 ROOT = dirname(__file__)
-CRYPT_DIR = join(ROOT, 'cprypt_files')
+CRYPT_DIR = input('Path crypted files>')
+if not isdir(join(ROOT,CRYPT_DIR)):
+	print("Incorect path, default ", end='>')
+	CRYPT_DIR = join(ROOT, 'finish_file')
+	print(CRYPT_DIR)
 CHARSET = 'utf-8'
 CRYPT_FORMAT = 'crypt'
 PROFILE_WORK = ['encrypt', 'decrypt']
